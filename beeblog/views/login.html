@@ -1,0 +1,55 @@
+{{template "header"}}
+    <title>login</title>
+<body>
+<br><br>
+    <div class="container" style="width: 600px">
+        <form method="post" action="/login">
+            <div class="form-group">
+                <label>Account</label>
+                <input type="text" class="form-control" id="uname" placeholder="enter account" name="uname">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" id="pwd" placeholder="Password" name="password">
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="autoLogin">auto login
+                </label>
+            </div>
+            <button type="submit" class="btn btn-default" onclick="return checkInput()">login</button>
+            <button class="btn btn-default" href="/">back</button>
+        </form>
+    </div>
+
+<div class="container demo-3" style="position: absolute; left: 0;top: 0; z-index: -1">
+    <div class="content">
+        <div id="large-header" class="large-header">
+            <canvas id="demo-canvas"></canvas>
+        </div>
+    </div>
+</div><!-- /container -->
+<script src="/static/js/TweenLite.min.js"></script>
+<script src="/static/js/EasePack.min.js"></script>
+<script src="/static/js/rAF.js"></script>
+<script src="/static/js/demo-3.js"></script>
+
+<script type="text/javascript" src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    function checkInput() {
+        var uname = document.getElementById("uname");
+        if (uname.value.length == 0){
+            alert("please enter account");
+            return false;
+        }
+        var pwd = document.getElementById("pwd");
+        if (pwd.value.length == 0){
+            alert("please enter password");
+            return false;
+        }
+        return true;
+    }
+</script>
+</body>
+</html>

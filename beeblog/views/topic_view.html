@@ -1,0 +1,52 @@
+{{template "header" }}
+<title>{{.Topic.Title}}</title>
+<body>
+{{template "navbar" .}}
+<div class="container">
+    <h1>{{.Topic.Title}}</h1>
+    <textarea class="form-control" readonly="readonly">{{.Topic.Content}}</textarea>
+    <br>
+</div>
+<hr>
+<div class="container">
+{{$tid := .Topic.Id}}
+    {{$IsLogin := .IsLogin}}
+    <h3>Reply Contents</h3>
+    {{range .Comments}}
+    <h3>nickname: {{.Name}} <small>{{.CreatedTime}}</small></h3>
+    <textarea class="form-control" readonly="readonly">{{.Content}}</textarea>
+    {{if $IsLogin}}<a href="/reply/del?cid={{.Id}}&tid={{$tid}}">delete reply</a>{{end}}
+    {{end}}
+</div>
+<div class="container">
+    <h3>Replies</h3>
+    <form action="/reply/add" method="post">
+        <input type="hidden" name="tid" value="{{.Topic.Id}}">
+        <div class="form-group">
+            <label>nickname:</label>
+            <input type="text" name="nickname" class="form-control">
+        </div>
+        <hr>
+        <div class="form-group">
+            <label>content:</label>
+            <br>
+            <textarea name="content" cols="30" rows="6" class="form-control"></textarea>
+        </div>
+        <button type="submit" class="btn btn-default">submit reply</button>
+    </form>
+</div>
+
+
+<script type="text/javascript" src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+
+<script>
+    $('textarea').each(function () {
+        this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
+    }).on('input', function () {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+    });
+</script>
+</body>
+</html>

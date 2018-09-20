@@ -1,0 +1,39 @@
+{{template "header" }}
+    <title>beeblog</title>
+<body>
+{{template "navbar" .}}
+
+<div class="container" style="font-size: 18px;">
+        <div class="col-md-9">
+    {{range .Topics}}
+        <div class="page-header">
+            <a href="/topic/view?id={{.Id}}"><h1>{{.Title}}</h1></a>
+            <h6 class="text-muted">The article is published in {{.CreatedTime}},{{.Views}} times view，{{.ReplyCount}} comments</h6>
+            <p>{{.Content}}</p>
+        </div>
+    {{end}}
+    </div>
+    <div class="col-md-3">
+        <h3>article classfication</h3>
+    {{range .Categories}}
+        <li><a href="/?cate={{.Title}}">{{.Title}}</a></li>
+    {{end}}
+    </div>
+</div>
+
+    <div class="container demo-3" style="position: absolute; left: 0;top: 0; z-index: -1">
+        <div class="content">
+            <div id="large-header" class="large-header">
+                <canvas id="demo-canvas"></canvas>
+            </div>
+        </div>
+    </div><!-- /container -->
+    <script src="/static/js/TweenLite.min.js"></script>
+    <script src="/static/js/EasePack.min.js"></script>
+    <script src="/static/js/rAF.js"></script>
+    <script src="/static/js/demo-3.js"></script>
+
+    <script type="text/javascript" src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+</body>
+</html>
